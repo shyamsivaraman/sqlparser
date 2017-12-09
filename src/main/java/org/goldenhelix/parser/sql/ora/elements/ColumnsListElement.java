@@ -9,6 +9,21 @@ import org.goldenhelix.parser.sql.ora.misc.ParserHelper;
 import org.goldenhelix.parser.sql.ora.misc.SQLPart;
 import org.goldenhelix.parser.sql.ora.visitor.QueryVisitor_I;
 
+/**
+ * 
+ * Extract the column list from the provided SQL Part. The SQL part doesn't have the SELECT | UPDATE | DELETE
+ * keywords. The input SQL fragment is:
+ * 		select col1, col2, func(coln) .... [from] ...
+ * 		       ^-------------------------------------^
+ * For each token defined as a column in the column list:
+ * - Classify the token into a generic ColumnElement object
+ * - Define an object for the classified token
+ * - Send the visitor in
+ * 
+ * @author Shyam Sivaraman
+ *
+ */
+
 public class ColumnsListElement implements QueryElement_I {
 
 	private SQLPart m_SqlPart;
@@ -41,6 +56,15 @@ public class ColumnsListElement implements QueryElement_I {
 			q.accept(visitor);
 		}
 	}
+	
+	/**
+	 * Classify each of the column list element into the appropriate object type. The 
+	 * evaluateColumnType() can be re-designed into an object factory
+	 * 
+	 * @param parts
+	 * @return
+	 * @throws ParseException
+	 */
 	
 	private QueryElement_I[] classifySubElements(List<String> parts) throws ParseException {
 		int i=0;

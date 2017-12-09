@@ -8,6 +8,16 @@ import org.goldenhelix.parser.sql.ora.elements.QueryElement_I;
 import org.goldenhelix.parser.sql.ora.misc.ElementType.EXPR_TYPE;
 import org.goldenhelix.parser.sql.ora.misc.ElementType.PARAM_TYPE;
 
+/**
+ * 
+ * @author Shyam Sivaraman
+ * 
+ * An implementation of the visitor interface, which does parsing as well as
+ * visit event generation.
+ * Receives the visit events into a single method, and determines the processing
+ * based on the type of element being visited right now. 
+ */
+
 public class ParsingVisitor implements QueryVisitor_I {
 
 	private int count = 0;

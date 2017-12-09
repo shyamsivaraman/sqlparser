@@ -64,7 +64,9 @@ public class ParserHelper {
 	}
 	
 	/**
-	 * Method used by ColumnListElement class
+	 * Used for:
+	 * - Generating the list of columns/ functions/ sub-queries specified in the input column list (@param sqlPart)
+	 * 
 	 * @param sqlPart
 	 * @param startIdx
 	 * @param depth
@@ -169,6 +171,19 @@ public class ParserHelper {
 		return (prevIdx == subStr.length()) ? new int[] {-1,0} : new int[]{prevIdx, tokenLen};
 	}
 
+	/**
+	 * Used for:
+	 * - Extracting the column list from the given sql fragment, with @param token = "from"
+	 * 
+	 * @param sql
+	 * @param subStr
+	 * @param startIdx
+	 * @param depth
+	 * @param token
+	 * @param doUnpaddedMatch
+	 * @return
+	 */
+	
 	public SQLPart findOuterPart(String sql, String subStr, int startIdx, int depth, String token, boolean doUnpaddedMatch) {
 		int fromIdx = -1;
 		SQLPart part = null;
