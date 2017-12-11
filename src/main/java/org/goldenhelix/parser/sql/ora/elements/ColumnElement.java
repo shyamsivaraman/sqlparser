@@ -7,6 +7,13 @@ import org.goldenhelix.parser.sql.ora.misc.ElementType.COL_TYPE;
 import org.goldenhelix.parser.sql.ora.misc.ParseException;
 import org.goldenhelix.parser.sql.ora.visitor.QueryVisitor_I;
 
+/**
+* This class holds the information related to the Generic representation of a column type,
+* like the table name, column name and the alias if present.
+* Depending on the type 'm_ColType' specified, the appropriate sub-element object is created
+* by this class.
+*/
+
 public class ColumnElement implements QueryElement_I {
 	
 	private String m_SqlPart;
